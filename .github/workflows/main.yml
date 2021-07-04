@@ -42,3 +42,13 @@ jobs:
           tags: |
             rromulosp/rotten-potatoes:latest
             rromulosp/rotten-potatoes:${{ github.run_number }}
+
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1.1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.K8S_CONFIG }}
